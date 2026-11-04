@@ -74,12 +74,13 @@ spring:
           # 등록 이름. 로그인 시작 주소 /oauth2/authorization/google,
           # 구글이 돌려보낼 주소 /login/oauth2/code/google 의 "google" 이 이 이름이다.
           google:
-            # 구글 클라우드 콘솔(console.cloud.google.com) → API 및 서비스 → 사용자 인증 정보 →
-            # "OAuth 2.0 클라이언트 ID" 를 만들면 받는 값이다. "..." 부분을 실제 값으로 바꿔야 한다.
-            # 그 화면의 "승인된 리디렉션 URI" 에는 http://localhost:8080/login/oauth2/code/google 을 등록한다.
-            client-id: 749982476822-p159j5ekji4ro5sdoetdpp2glprmi50e.apps.googleusercontent.com
+            # 빈스톡 환경 속성 SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID /
+            # …_CLIENT_SECRET / …_SCOPE 값이 아래 세 값을 덮어쓴다.
+            # 배포 후 구글 로그인이 되려면 구글 클라우드 콘솔 [승인된 리디렉션 URI]에
+            # http://<빈스톡 도메인>/login/oauth2/code/google 을 추가해야 한다.
+            client-id: 663642212621...
             # ⚠️ 비밀번호와 같은 값이다. 깃(Git)에 올리지 말고 환경 변수 등으로 따로 관리한다.
-            client-secret: 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
+            client-secret: GOCSPX-...
             # 구글에 요청할 정보 범위. email(이메일), profile(이름·사진)
             # ⚠️ openid 를 넣으면 OIDC 방식이 되어 OAuth2UserCustomService 대신 OidcUserService 가 쓰인다.
             #    그러면 users 표에 저장하는 코드가 실행되지 않으므로 넣지 않는다.
@@ -91,9 +92,7 @@ spring:
 jwt:
   # 토큰 발급자(iss) 값. 토큰 안에 기록된다.
   issuer: ajufresh@gmail.com
-  # 토큰 서명에 쓰는 비밀 키. (secret_key → JwtProperties.secretKey, 느슨한 바인딩)
-  # 수업용 값이다. 실제 서비스에서는 길고 무작위한 값을 환경 변수나 비밀
-  # 저장소로 분리해야 한다. 이 키가 알려지면 누구나 유효한 토큰을 만들 수 있다.
+  # 빈스톡 환경 속성 JWT_SECRET_KEY 값이 이 값을 덮어쓴다.
   secret_key: study-springboot
 
 # ----------------------------------------------------------------------------
