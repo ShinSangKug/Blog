@@ -141,6 +141,6 @@ jobs:
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           # region : 빈스톡 환경을 만든 리전. ap-northeast-2 = 아시아 태평양(서울)
           region: ap-northeast-2
-          # deployment_package : 업로드할 파일 경로. 6단계에서 저장한 env.artifact 를 사용한다.
+          # deployment_package : 업로드할 배포 파일 경로. 6단계에서 저장한 env.artifact 를 사용한다.
           #   → ./build/libs/springboot-developer-0.0.1-SNAPSHOT.jar
           deployment_package: ./build/libs/${{env.artifact}}
